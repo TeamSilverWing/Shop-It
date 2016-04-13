@@ -1,0 +1,6 @@
+<% for(var i=0; i<item.length; i++) {%>
+   <a href = "/items/<%= item[i].id %> "><%= item[i].name %> <%= item[i].rating %></a><br>
+   Name : <%= item[i].name %><br>
+   Description : <%= item[i].description %><br>
+   author : <%= item[i].author %><br>
+<% } %>
