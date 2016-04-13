@@ -14,6 +14,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
 
+<<<<<<< HEAD
 var config = require('./config/config.json');
 
 var mysql = require('mysql');
@@ -23,6 +24,9 @@ connection.connect();
 
 
 app.set('port',(process.env.PORT||3000));
+=======
+app.set('port',(process.env.PORT||3001));
+>>>>>>> 79fb1765c89728d9ece6f5b90953d4de1ed85619
 
 http.listen (app.get('port'),function(){
   console.log("listening to port number "+app.get('port'));
