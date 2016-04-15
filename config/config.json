@@ -1,0 +1,6 @@
+{
+	"host": "localhost",
+	"user": "shopit",
+	"password" : "shopit",
+	"database" : "shopit"
+}
