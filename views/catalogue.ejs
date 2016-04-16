@@ -9,8 +9,8 @@ function addToCart(item)
 {
 	document.getElementById(item+"-status").innerHTML = "Adding..";
 	seller = document.getElementById(item + '-seller').innerHTML;
-	user = 1;
-
+	user = document.getElementById("user").innerHTML;
+	alert(user);
 	$.ajax({
 		method : "POST",
 		url: "/cart/",
@@ -28,6 +28,13 @@ function addToCart(item)
 			<header class="major">
 				<h2>ITEMS</h2>
 				<span class="byline">dkeh le kya likhna hai</span>
+				<%if (user.valid == 1) { %>
+				Username : <%= user.username %>
+				Email : <%= user.email %>
+				Name : <%= user.first_name %> <%= user.last_name %>
+				<span id = "user" style="visibility:hidden;display:inline;"><%= user.user_id %></span>
+				<a href="/logout/">LogOut</a>
+				<% } %>
 			</header>
 			
 			<% for(var i=0; i<items.length; i=i+3) {%> 
