@@ -21,6 +21,7 @@
   `price` int(11) NOT NULL,
   `seller` int(11) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `name_fk` (`name`,`seller`),
   KEY `seller` (`seller`),
   CONSTRAINT `Item_ibfk_1` FOREIGN KEY (`seller`) REFERENCES `User` (`id`)
 )``
@@ -52,22 +53,33 @@
 
 * ####Table Order
 ``CREATE TABLE `Order` (
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`buyer` INT NOT NULL,
-	`date` DATE NOT NULL,
-	`address` VARCHAR(255) NOT NULL,
-	PRIMARY KEY (`id`)
-);``
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `buyer` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `address` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `buyer` (`buyer`),
+  CONSTRAINT `Order_ibfk_1` FOREIGN KEY (`buyer`) REFERENCES `User` (`id`)
+)``
 
 * ####Table OrderItem
 ``CREATE TABLE `OrderItem` (
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`item` INT NOT NULL,
-	`seller` INT NOT NULL,
-	`order` INT NOT NULL,
-	`status` INT NOT NULL,
-	PRIMARY KEY (`id`)
-);``
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `seller` int(11) NOT NULL,
+  `order` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `item` (`item`),
+  KEY `order` (`order`),
+  KEY `seller` (`seller`),
+  KEY `name` (`name`),
+  CONSTRAINT `OrderItem_ibfk_5` FOREIGN KEY (`name`) REFERENCES `Item` (`name`),
+  CONSTRAINT `OrderItem_ibfk_2` FOREIGN KEY (`item`) REFERENCES `Item` (`id`),
+  CONSTRAINT `OrderItem_ibfk_3` FOREIGN KEY (`order`) REFERENCES `Order` (`id`),
+  CONSTRAINT `OrderItem_ibfk_4` FOREIGN KEY (`seller`) REFERENCES `User` (`id`)
+)``
 
 ###To run the application
 * ``npm install`` installes the node_modules

@@ -47,6 +47,8 @@ function deleteFromCart(item)
 				<h2>ITEMS</h2>
 				<span class="byline">dkeh le kya likhna hai</span>
 				<%if (user.valid == 1) { %>
+				<a href="/cart/"> My Cart</a>
+				<a href="/checkout/"> CheckOut</a>
 				Username : <%= user.username %>
 				Email : <%= user.email %>
 				Name : <%= user.first_name %> <%= user.last_name %>
@@ -65,7 +67,7 @@ function deleteFromCart(item)
 							<p>Price : <%= items[i].price %></p>
 							<p id ="<%= items[i].id %>-seller" style="visibility:hidden;display:inline;"><%= items[i].seller %></p>
 							</b>
-							<label id="<%= items[i].id %>-status"></label>
+							<p id="<%= items[i].id %>-status"></p>
 							<%if (items[i].visibility == 1) { %>
 								<button id = "<%= items[i].id %>-add-cart-button" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
 								<button id = "<%= items[i].id %>-delete-cart-button" style = "visibility:hidden;display:inline;" onclick = "deleteFromCart(<%= items[i].id %>)">Delete From Cart</button>
@@ -84,7 +86,7 @@ function deleteFromCart(item)
 							<p>Price : <%= items[i+1].price %></p>
 							<p id ="<%= items[i+1].id %>-seller" style="visibility:hidden;display:inline;"><%= items[i+1].seller %></p>
 							</b>
-							<label id="<%= items[i+1].id %>-status"></label>
+							<p id="<%= items[i+1].id %>-status"></p>
 							<%if (items[i+1].visibility == 1) { %>
 								<button id = "<%= items[i+1].id %>-add-cart-button" onclick = "addToCart(<%= items[i+1].id %>)">Add To Cart</button>
 								<button id = "<%= items[i+1].id %>-delete-cart-button" style = "visibility:hidden;display:inline;" onclick = "deleteFromCart(<%= items[i+1].id %>)">Delete From Cart</button>
@@ -104,7 +106,7 @@ function deleteFromCart(item)
 							<p>Price : <%= items[i+2].price %></p>
 							<p id ="<%= items[i+2].id %>-seller" style="visibility:hidden;display:inline;"><%= items[i+2].seller %></p>
 							</b>
-							<label id="<%= items[i+2].id %>-status"></label>
+							<p id="<%= items[i+2].id %>-status"></p>
 							<%if (items[i+2].visibility == 1) { %>
 								<button id = "<%= items[i+2].id %>-add-cart-button" onclick = "addToCart(<%= items[i+2].id %>)">Add To Cart</button>
 								<button id = "<%= items[i+2].id %>-delete-cart-button" style = "visibility:hidden;display:inline;" onclick = "deleteFromCart(<%= items[i+2].id %>)">Delete From Cart</button>

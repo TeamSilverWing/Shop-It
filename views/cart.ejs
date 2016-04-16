@@ -1,6 +1,18 @@
+<%if (instance == "checkout") { %>
+	Your final cart is :
+<% } %>
+
 <% for(var i=0; i<items.length; i=i+1) {%>
 ITEM ID : <%= items[i].item %>
 BUYER ID : <%= items[i].buyer %>
 <br/>
 <% } %>
-			
+
+<%if (instance == "checkout") { %>
+	<form action="/checkout/address/" method="POST">
+	<button type = "submit">Confirm Cart</button>
+	</form>
+
+	<button type = "submit"><a href="/cart/">Edit Cart</a></button>
+	</form>
+<% } %>

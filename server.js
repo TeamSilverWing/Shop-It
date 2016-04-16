@@ -5,9 +5,12 @@ app = express();
 expressLayouts = require('express-ejs-layouts');
 http = require('http').Server(app);
 session = require('express-session');
+
+//Different Modules
 authenticate = require('./lib/authenticate.js');
 buyer = require('./lib/buyer.js');
 shopit = require('./lib/shopit.js');
+checkout = require('./lib/checkout.js');
 
 app.use(session({secret: '5H0P17!'}));
 app.use(express.static(__dirname + '/public'));
@@ -52,6 +55,12 @@ app.get('/logout/',function(req,res)
 	return authenticate_instance.logout(req,res);
 });
 
+app.post('/signup/',function(req,res)
+{
+	var authenticate_instance = new authenticate();
+	return authenticate_instance.signup(req,res);
+});
+
 
 //Using Buyer Module
 app.get('/cart/',function(req,res)	//View items in the Cart
@@ -88,3 +97,20 @@ app.get('/items/:id', function (req, res)
 
 
 //Using CheckOut Module
+app.get('/checkout/',function(req,res)
+{
+	var checkout_instance = new checkout();
+	return checkout_instance.checkOut(req,res);
+});
+
+app.post('/checkout/address/',function(req,res)
+{
+	var checkout_instance = new checkout();
+	return checkout_instance.checkOutAddress(req,res);
+});
+
+app.post('/checkout/confirm/',function(req,res)
+{
+	var checkout_instance = new checkout();
+	return checkout_instance.checkOutConfirm(req,res);
+});
