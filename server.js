@@ -20,6 +20,7 @@ var connection = mysql.createConnection(config);
 connection.connect();
 //connection.query('UPDATE games SET active = \'false\',winner = \' ' +'draw'+'\',looser = \' '+'draw'+'\' WHERE `games`.`active` = \''+'active'+'\';');
 var seller = 2;
+var async = require("async");
 
 app.set('port',(process.env.PORT||3000));
 
@@ -27,6 +28,7 @@ http.listen(app.get('port'),function(){
   console.log("Listening to port number "+app.get('port'));
 });
 
+require('./seller')(app,connection);
 app.get('/', function(req, res)
 {
 	res.render('index',{name : "anshul"});	
@@ -82,24 +84,3 @@ app.post('/cart/',function (req, res)	//add to cart
 	});
 
 });*/
-
-
-app.get('/inventory', function (req, res)
-{
-	connection.query('SELECT * FROM Item',function(err1, rows, feild) {
-		res.render('inventory',{items : rows});
-	});
-});
-
-app.post('/add_item/',function (req, res)	//add to cart
-{
-	var name = req.body.name;
-	var photo = req.body.photo;
-	var description = req.body.description;
-	console.log(name);
-	console.log(description);
-	connection.query('INSERT INTO Item (description,name,photo) values ("'+description+'","'+name+'","'+photo+'")', 
-		function(err, rows, field){
-			res.send(err);
-	});
-});

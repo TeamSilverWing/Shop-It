@@ -1,0 +1,79 @@
+<html>
+<head>
+</head>
+
+
+<script>
+function makeProgress(id)
+{
+	stats = ["To be Approved","To be Dispatched","To be Delivered","Received"];
+	buttons = ["Approve","Dispatch","Confirm Receiving","Completed"]
+	status = parseInt(document.getElementById("getstatus"+id).innerHTML);
+	if(status>3)
+		return;
+	//do ajax request
+	$.ajax({
+		method : "POST",
+		url: "/progress/"+id,
+		data : "status="+(status),
+  		context: document.body
+			}).done(function(res)
+			{
+				// alert(parseInt(status)+1);
+				document.getElementById("getstatus"+id).innerHTML = parseInt(status)+1;
+				document.getElementById("orderstatus"+id).innerHTML = stats[status];
+				document.getElementById("orderbutton"+id).innerHTML = buttons[status];
+			});
+}
+</script>
+
+<body>
+	<table border="1" style="width:100%">
+		<tr>
+			<th>Item name</th>
+			<th>Item status</th> 
+			<th>Take Action</th> 
+		</tr>
+		<% for(var i=0; i<orders.length; i=i+1) {%> 
+		<tr>
+			<div id = "getstatus<%= orders[i].id%>" style=" display:none "><%= orders[i].status %></div>
+
+			<td><%= orders[i].name %></td>
+
+			<td id="orderstatus<%= orders[i].id %>" >
+				<%if ( orders[i].status == 1) { %>
+					To be Approved
+				<% } %>
+
+				<%if ( orders[i].status == 2) { %>
+					To be Dispatched
+				<% } %>
+
+				<%if ( orders[i].status == 3) { %>
+					To be Delivered
+				<% } %>
+			</td>
+
+			<td >
+				<button id="orderbutton<%= orders[i].id %>" 
+						onclick="makeProgress(<%= orders[i].id %>)" > 
+					
+					<%if ( orders[i].status == 1) { %>
+						Approve
+					<% } %>
+
+					<%if ( orders[i].status == 2) { %>
+						Dispatch
+					<% } %>
+
+					<%if ( orders[i].status == 3) { %>
+						Deliver
+					<% } %>
+
+				</button>
+			</td>
+
+		</tr>
+		<% } %>
+	</table>
+</body>
