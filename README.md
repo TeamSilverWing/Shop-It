@@ -41,23 +41,13 @@
   UNIQUE KEY `email` (`email`)
 )``
 
-* ####Table Cart
-``CREATE TABLE `Cart` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `buyer` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `buyer` (`buyer`),
-  CONSTRAINT `Cart_ibfk_1` FOREIGN KEY (`buyer`) REFERENCES `User` (`id`)
-)``
-
 * ####Table CartItem
 ``CREATE TABLE `CartItem` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item` int(11) NOT NULL,
-  `cart` int(11) NOT NULL,
-  `seller` int(11) NOT NULL,
+  `buyer` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_item` (`item`,`cart`)
+  UNIQUE KEY `unique_item` (`item`,`buyer`)
 )``
 
 * ####Table Order
