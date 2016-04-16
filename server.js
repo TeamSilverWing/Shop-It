@@ -83,3 +83,23 @@ app.post('/cart/',function (req, res)	//add to cart
 
 });*/
 
+
+app.get('/inventory', function (req, res)
+{
+	connection.query('SELECT * FROM Item',function(err1, rows, feild) {
+		res.render('inventory',{items : rows});
+	});
+});
+
+app.post('/add_item/',function (req, res)	//add to cart
+{
+	var name = req.body.name;
+	var photo = req.body.photo;
+	var description = req.body.description;
+	console.log(name);
+	console.log(description);
+	connection.query('INSERT INTO Item (description,name,photo) values ("'+description+'","'+name+'","'+photo+'")', 
+		function(err, rows, field){
+			res.send(err);
+	});
+});
