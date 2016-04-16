@@ -29,9 +29,9 @@ module.exports = function(app,connection){
 	    connection.query('SELECT * FROM OrderItem WHERE `seller` = '+seller,function(err1, rows, field) {
 			if(rows[0] != undefined){
 
-				for(i=0;i<rows.length;i=i+1){
-					console.log(rows[i].name);
-				}
+				// for(i=0;i<rows.length;i=i+1){
+				// 	console.log(rows[i].name);
+				// }
 
 				response['orders'] = rows;
 				res.render('orders',response);
@@ -47,9 +47,11 @@ module.exports = function(app,connection){
 	app.post('/progress/:id',function (req, res)	//add to cart
 	{
 		console.log("receive from "+req.body.status);
-		// connection.query('SELECT * FROM Item WHERE `Item`.`id` = '+req.params.id,function(err1, rows, feild) {
-		// 	res.render('item',{item : rows});
-		// });
+		connection.query('UPDATE OrderItem SET status='+req.body.status+' WHERE `OrderItem`.`id` = '+req.params.id,
+			function(err1, rows, feild) {
+
+			// 	res.render('item',{item : rows});
+		});
 		res.send("Successful");
 	});
 

@@ -8,8 +8,8 @@ function makeProgress(id)
 {
 	stats = ["To be Approved","To be Dispatched","To be Delivered","Received"];
 	buttons = ["Approve","Dispatch","Confirm Receiving","Completed"]
-	status = parseInt(document.getElementById("getstatus"+id).innerHTML);
-	if(status>3)
+	status = parseInt(document.getElementById("getstatus"+id).innerHTML)+1;
+	if(status>4)
 		return;
 	//do ajax request
 	$.ajax({
@@ -20,9 +20,9 @@ function makeProgress(id)
 			}).done(function(res)
 			{
 				// alert(parseInt(status)+1);
-				document.getElementById("getstatus"+id).innerHTML = parseInt(status)+1;
-				document.getElementById("orderstatus"+id).innerHTML = stats[status];
-				document.getElementById("orderbutton"+id).innerHTML = buttons[status];
+				document.getElementById("getstatus"+id).innerHTML = parseInt(status);
+				document.getElementById("orderstatus"+id).innerHTML = stats[status-1];
+				document.getElementById("orderbutton"+id).innerHTML = buttons[status-1];
 			});
 }
 </script>
@@ -52,6 +52,10 @@ function makeProgress(id)
 				<%if ( orders[i].status == 3) { %>
 					To be Delivered
 				<% } %>
+
+				<%if ( orders[i].status == 4) { %>
+					Delivered
+				<% } %>
 			</td>
 
 			<td >
@@ -69,6 +73,11 @@ function makeProgress(id)
 					<%if ( orders[i].status == 3) { %>
 						Deliver
 					<% } %>
+
+					<%if ( orders[i].status == 4) { %>
+						Completed
+					<% } %>
+
 
 				</button>
 			</td>
