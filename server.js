@@ -20,7 +20,10 @@ var connection = mysql.createConnection(config);
 connection.connect();
 //connection.query('UPDATE games SET active = \'false\',winner = \' ' +'draw'+'\',looser = \' '+'draw'+'\' WHERE `games`.`active` = \''+'active'+'\';');
 var seller = 2;
-
+var user = 1;
+var TYPE_SELLER = 2;
+var TYPE_BUYER = 1;
+var TYPE_ADMIN = 0;
 app.set('port',(process.env.PORT||3000));
 
 http.listen(app.get('port'),function(){
@@ -34,8 +37,50 @@ app.get('/', function(req, res)
 
 app.get('/catalogue', function (req, res)
 {
-	connection.query('SELECT * FROM Item',function(err1, rows, feild) {
-		res.render('catalogue',{items : rows});
+	connection.query('SELECT * FROM `Item` ORDER BY `id` DESC',function(err1, rows, feild)
+	{
+		//check if added to cart or not
+		connection.query('SELECT * FROM `Cart` WHERE `buyer` = '+user,function(err2,rows2,field)
+		{
+			if(rows2[0] != undefined)
+			{
+				connection.query('SELECT `item`,`seller` FROM `CartItem` WHERE `cart` = '+rows2[0].id+' ORDER BY `item` DESC',function(err3,rows3,field)
+				{		
+					for(i=0,j=0;i<rows.length,j<rows3.length;)
+					{
+						if(rows[i].id == rows3[j].item)
+						{
+							rows[i].visibility = 0;
+							i++;
+							j++;
+						}
+						else if(rows[i].id>rows3[j].item)
+						{
+							rows[i].visibility = 1;
+							i++;
+						}
+						else
+						{
+							j++;
+						}
+					}
+
+					for(;i<rows.length;i++)
+					{
+						rows[i].visibility = 1;
+					}
+					res.render('catalogue',{items : rows});
+				});
+			}
+			else
+			{
+				for(i=0;i<rows.length;i++)
+					{
+						rows[i].visibility = 1;
+					}
+				res.render('catalogue',{items : rows});
+			}
+		});
 	});
 });
 
@@ -50,12 +95,16 @@ app.post('/cart/',function (req, res)	//add to cart
 {
 	var user = req.body.userId;
 	var item = req.body.itemId;
-	console.log(user);
-	console.log(item);
-	connection.query('SELECT * FROM Cart WHERE `Cart`.`buyer` = '+user,function(err1, rows, feild) {
+	var seller = req.body.sellerId;
+	
+	connection.query('SELECT * FROM Cart WHERE `Cart`.`buyer` = '+user,function(err1, rows, feild)
+	{
 		if(rows[0] != undefined)
 		{
-			connection.query('INSERT INTO CartItem (item,cart,seller) values ('+item+','+rows[0].id+','+seller+')');			
+			connection.query('INSERT INTO CartItem (item,cart,seller) values ('+item+','+rows[0].id+','+seller+')',function(err2,rows2,field)
+				{
+				
+				});			
 		}
 		else
 		{
@@ -65,13 +114,12 @@ app.post('/cart/',function (req, res)	//add to cart
 				{
 					connection.query('INSERT INTO CartItem (item,cart,seller) values ('+item+','+rows2[0].id+','+seller+')',function(err1, rows, feild)
 					{
-						console.log("Added new");
+					
 					});		
 				});	
 			});
 		}
 	});
-	//send response
 	res.send("Successful");
 });
 

@@ -8,20 +8,18 @@
 function addToCart(item)
 {
 	document.getElementById(item+"-status").innerHTML = "Adding..";
+	seller = document.getElementById(item + '-seller').innerHTML;
+	user = 1;
 
-	//do ajax request
 	$.ajax({
 		method : "POST",
 		url: "/cart/",
-		data : "userId=2&itemId="+item,
-  		context: document.body
-			}).done(function()
-			{
-				document.getElementById(item+"-status").innerHTML = "Added to the Cart";
-				document.getElementById(item+"-cart-button").style.visibility = "hidden";
-			});
-
-	
+		data : "userId="+user+"&itemId="+item + "&sellerId="+seller,
+		}).done(function()
+		{
+			document.getElementById(item+"-status").innerHTML = "Added to the Cart";
+			document.getElementById(item+"-cart-button").style.visibility = "hidden";
+		});
 }
 </script>
 
@@ -36,27 +34,45 @@ function addToCart(item)
 			<div class="row no-collapse-1">
 						<section class="4u">
 							<a href="items/<%= items[i].id %>" class="image feature"><img id="image" src="<%= items[i].photo %>" ></a>
-							<p><%= items[i].name%></p>
-							<p><%= items[i].description %></p>
+							<b>
+							<p>Name : <%= items[i].name%></p>
+							<p>Description : <%= items[i].description %></p>
+							<p>Price : <%= items[i].price %></p>
+							<p id ="<%= items[i].id %>-seller" style="visibility:hidden;display:inline;"><%= items[i].seller %></p>
+							</b>
 							<label id="<%= items[i].id %>-status"></label>
-							<button id = "<%= items[i].id %>-cart-button" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
+							<%if (items[i].visibility == 1) { %>
+								<button id = "<%= items[i].id %>-cart-button" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
+							<% } %>
 						</section>
 						<%if (items.length > i+1) { %>
 						<section class="4u">
 							<a href="items/<%= items[i+1].id %>" class="image feature"><img id="image" src="<%= items[i+1].photo %>" ></a>
-							<p><%= items[i+1].name%></p>
-							<p><%= items[i+1].description %></p>
+							<b>
+							<p>Name : <%= items[i+1].name%></p>
+							<p>Description : <%= items[i+1].description %></p>
+							<p>Price : <%= items[i+1].price %></p>
+							<p id ="<%= items[i+1].id %>-seller" style="visibility:hidden;display:inline;"><%= items[i+1].seller %></p>
+							</b>
 							<label id="<%= items[i+1].id %>-status"></label>
+							<%if (items[i+1].visibility == 1) { %>
 							<button id = "<%= items[i+1].id %>-cart-button" onclick = "addToCart(<%= items[i+1].id %>)">Add To Cart</button>
+							<% } %>
 						</section>
 						<% } %>
 						<%if (items.length > i+2) { %>
 						<section class="4u">
 							<a href="items/<%= items[i+2].id %>" class="image feature"><img id="image" src="<%= items[i+2].photo %>" ></a>
-							<p><%= items[i+2].name%></p>
-							<p><%= items[i+2].description %></p>
+							<b>
+							<p>Name : <%= items[i+2].name%></p>
+							<p>Description : <%= items[i+2].description %></p>
+							<p>Price : <%= items[i+2].price %></p>
+							<p id ="<%= items[i+2].id %>-seller" style="visibility:hidden;display:inline;"><%= items[i+2].seller %></p>
+							</b>
 							<label id="<%= items[i+2].id %>-status"></label>
+							<%if (items[i+2].visibility == 1) { %>
 							<button id = "<%= items[i+2].id %>-cart-button" onclick = "addToCart(<%= items[i+2].id %>)">Add To Cart</button>
+							<% } %>
 							</section>
 						<% } %>
 						</div>
