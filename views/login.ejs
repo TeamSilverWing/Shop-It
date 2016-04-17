@@ -18,11 +18,13 @@
 	 <div class="container">
 		<div class="card hoverable" id ="card_item" style="padding:50px">
 			<div class="row center-align">
-				<div class="row">
 				<%if (error!="") {%>
-				<%= error %>
+				<div class="row" >
+                        <div id="response" class="chip">
+                        	<%= error %>
+                        </div>   
+                    </div>
 				<% } %>
-				</div>
 				<form class="col s6" id="myform1" action="/signup/" method="post">
 					<div class = "row ">
 						<h2> Sign Up </h2>
@@ -38,9 +40,9 @@
 						</div>
 					</div>
 					<div class="row">
+							<label for="user_type">Select User Type</label>
 						<div class="input-field col s12">
 							<select name="user_type" class="browser-default">
-							  <option value="1" disabled selected>User Type</option>
 							  <option value="1">Buyer</option>
 							  <option value="2">Seller</option>
 							</select>

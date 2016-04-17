@@ -5,6 +5,8 @@ app = express();
 expressLayouts = require('express-ejs-layouts');
 http = require('http').Server(app);
 session = require('express-session');
+htmlspecialchars = require('htmlspecialchars');
+crypto = require('crypto');
 
 //Different Modules
 authenticate = require('./lib/authenticate.js');
