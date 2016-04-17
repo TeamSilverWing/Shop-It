@@ -109,19 +109,13 @@ app.get('/items/:id', function (req, res)
 app.get('/checkout/',function(req,res)
 {
 	var checkout_instance = new checkout();
-	return checkout_instance.checkOut(req,res);
-});
-
-app.post('/checkout/address/',function(req,res)
-{
-	var checkout_instance = new checkout();
-	return checkout_instance.checkOutAddress(req,res);
+	return checkout_instance.checkout(req,res);
 });
 
 app.post('/checkout/confirm/',function(req,res)
 {
 	var checkout_instance = new checkout();
-	return checkout_instance.checkOutConfirm(req,res);
+	return checkout_instance.checkoutOrder(req,res);
 });
 
 //Seller Functoins handled addToCart
