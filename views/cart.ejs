@@ -3,6 +3,16 @@
 <link rel="stylesheet" href="/css/materialize.min.css" />
 
 <script>
+function calculatePrice()
+{
+    var sizeofCart = parseInt(document.getElementById("size-cart").innerHTML);
+    alert(sizeofCart); 
+    for(i=0;i<sizeofCart;i++)
+    {
+           
+    }
+}
+
 function addToCart(item)
 {
     $.ajax({
@@ -63,6 +73,7 @@ function deleteFromCart(item)
           </tr>
         </thead>
         <tbody>
+        <label id = "size-cart" style="display:none;"><%= items.length %></label>
         <% for(var i=0; i<items.length; i=i+1) {%>
             <tr>
             <td><%= items[i].name %></td>

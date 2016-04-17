@@ -1,6 +1,10 @@
-<link rel="stylesheet" href="/css/skel.css" />
-<link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/materialize.min.css" />
+<html>
+<head>
+    <link rel="stylesheet" href="/css/materialize.min.css" />
+    <script type="text/javascript" src="/js/jquery-2.2.3.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
 
 <nav>
     <div class="nav-wrapper">
@@ -16,5 +20,36 @@
     </div>
 </nav>
 
-<%= user.address %>
-<%= user.contact_no %>
+<div class="container">
+    <div class="card hoverable" id ="card_item" style="padding:30px">
+        <div class = "row center-align ">
+            <h2> Checkout Your Cart !!!</h2>
+        <%if (error!="") {%>
+        <h4><%= error %></h4>
+        <% } %>
+        <form class="col s12" id="myform" action="/checkout/confirm/" method="post">
+            <div class="row">
+                <div class="input-field col s12">
+                	<!-- add value field -->
+                   	<textarea id="address" type="text" name="address" class="materialize-textarea"><%= user.address %></textarea>
+                    <label for="address">Address</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                	<!-- add value field -->
+                    <input value="<%= user.contact_no %>"id="contact_no" type="number" name="contact_no" class="validate">
+                    <label for="contact_no">Contact Number</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button class="btn waves-effect waves-light z-depth-3" type="submit">
+                    Place Order
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
