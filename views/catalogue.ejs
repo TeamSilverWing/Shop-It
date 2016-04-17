@@ -1,5 +1,7 @@
 <html>
 <head>
+<link rel="stylesheet" href="/css/skel.css" />
+<link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/materialize.min.css" />
 </head>
 
@@ -55,30 +57,27 @@ function deleteFromCart(item)
 </nav>
 
 <!-- End of header -->
-	<div class="container ">
-        <div class = "row center-align ">
-               <%if (user.valid == 1) { %>
+
+<div class="wrapper style2">
+		<section class="container">
+			<header class="major">
+				<%if (user.valid == 1) { %>
 				<h4 style="padding-top: 10px;">Welcome, <%= user.first_name %></h4>
 				<% } %>
 				<h2 style="padding-top: 10px;">Our Catalogue</h2>
 				<span class="byline">Browse through the products</span>
 				<br/>
-        </div>
-
-    <% for(var i=0; i<items.length; i=i+3) {%> 
-
-          <div class="row">
-
-                <div class="col s12 m4 ">
-                    <div class="card medium blue-grey center-align margin hoverable">
-                        <div class="card-image">
-                               <img id="image" class="responsive-img" src="<%= items[i].photo %>" ></img>
-                        </div>
-                        <div class="card-content white-text">
-                            <span class="card-title"><%= items[i].name%></span>
-                            <p class = "light">Description : <%= items[i].description %></p>
-                            <p class = "light">Price : <%= items[i].price %></p>
-                            <%if (items[i].visibility == 1) { %>
+			</header>
+			
+			<% for(var i=0; i<items.length; i=i+3) {%> 
+			<div class="row no-collapse-1">
+						<section class="4u">
+							<a href="/items/<%= items[i].id %>" class="image feature"><img id="image" src="<%= items[i].photo %>" ></a>
+							<b>
+							<p>Name : <%= items[i].name%></p>
+							<p>Price : <%= items[i].price %></p>
+							</b>
+							<%if (items[i].visibility == 1) { %>
 								<button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-add-cart-button" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
 								<button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-delete-cart-button" style = "display:none;" onclick = "deleteFromCart(<%= items[i].id %>)">Delete From Cart</button>
 							<% } %>
@@ -86,22 +85,15 @@ function deleteFromCart(item)
 								<button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-add-cart-button" style = "display:none;" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
 								<button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-delete-cart-button" onclick = "deleteFromCart(<%= items[i].id %>)">Delete From Cart</button>
 							<% } %>
-                        </div>
-                    </div>
-                </div>
-
-
-            <%if (items.length > i+1) { %>
-                <div class="col s12 m4 ">
-                    <div class="card medium blue-grey center-align margin hoverable">
-                        <div class="card-image">
-                               <img id="image" class="responsive-img" src="<%= items[i+1].photo %>" ></img>
-                        </div>
-                        <div class="card-content white-text">
-                            <span class="card-title"><%= items[i+1].name%></span>
-                            <p class = "light">Description : <%= items[i+1].description %></p>
-                            <p class = "light">Price : <%= items[i+1].price %></p>
-                            <%if (items[i+1].visibility == 1) { %>
+						</section>
+						<%if (items.length > i+1) { %>
+						<section class="4u">
+							<a href="/items/<%= items[i+1].id %>" class="image feature"><img id="image" src="<%= items[i+1].photo %>" ></a>
+							<b>
+							<p>Name : <%= items[i+1].name%></p>
+							<p>Price : <%= items[i+1].price %></p>
+							</b>
+							<%if (items[i+1].visibility == 1) { %>
 								<button class = "waves-effect waves-light btn" id = "<%= items[i+1].id %>-add-cart-button" onclick = "addToCart(<%= items[i+1].id %>)">Add To Cart</button>
 								<button class = "waves-effect waves-light btn" id = "<%= items[i+1].id %>-delete-cart-button" style = "display:none;" onclick = "deleteFromCart(<%= items[i+1].id %>)">Delete From Cart</button>
 							<% } %>
@@ -109,22 +101,16 @@ function deleteFromCart(item)
 								<button class = "waves-effect waves-light btn" id = "<%= items[i+1].id %>-add-cart-button" style = "display:none;" onclick = "addToCart(<%= items[i+1].id %>)">Add To Cart</button>
 								<button class = "waves-effect waves-light btn" id = "<%= items[i+1].id %>-delete-cart-button" onclick = "deleteFromCart(<%= items[i+1].id %>)">Delete From Cart</button>
 							<% } %>
-                        </div>
-                    </div>
-                </div>
-            <% } %>
-
-            <%if (items.length > i+2) { %>
-                <div class="col s12 m4 ">
-                    <div class="card medium blue-grey center-align margin hoverable">
-                        <div class="card-image">
-                               <img id="image" class="responsive-img" src="<%= items[i+2].photo %>" ></img>
-                        </div>
-                        <div class="card-content white-text">
-                            <span class="card-title"><%= items[i+2].name%></span>
-                            <p class = "light">Description : <%= items[i+2].description %></p>
-                            <p class = "light">Price : <%= items[i+2].price %></p>
-                            <%if (items[i+2].visibility == 1) { %>
+						</section>
+						<% } %>
+						<%if (items.length > i+2) { %>
+						<section class="4u">
+							<a href="/items/<%= items[i+2].id %>" class="image feature"><img id="image" src="<%= items[i+2].photo %>" ></a>
+							<b>
+							<p>Name : <%= items[i+2].name%></p>
+							<p>Price : <%= items[i+2].price %></p>
+							</b>
+							<%if (items[i+2].visibility == 1) { %>
 								<button class = "waves-effect waves-light btn" id = "<%= items[i+2].id %>-add-cart-button" onclick = "addToCart(<%= items[i+2].id %>)">Add To Cart</button>
 								<button class = "waves-effect waves-light btn" id = "<%= items[i+2].id %>-delete-cart-button" style = "display:none;" onclick = "deleteFromCart(<%= items[i+2].id %>)">Delete From Cart</button>
 							<% } %>
@@ -133,18 +119,10 @@ function deleteFromCart(item)
 								<button class = "waves-effect waves-light btn" id = "<%= items[i+2].id %>-delete-cart-button" onclick = "deleteFromCart(<%= items[i+2].id %>)">Delete From Cart</button>
 							<% } %>
 							</section>
-                        </div>
-                    </div>
-                </div>
-            <% } %>
-
-
-
-          </div>
-    <% } %>
-  </div>
-
-
+						<% } %>
+						</div>
+				
+<% } %>
 
 	<!-- Footer -->
 			<div id="footer" style="background-color: #323232;width:100%;height:100%;">
