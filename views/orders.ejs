@@ -1,0 +1,114 @@
+<html>
+<head>
+	<link rel="stylesheet" href="/css/materialize.min.css" />
+	<script type="text/javascript" src="/js/jquery-2.2.3.js"></script>
+	<script type="text/javascript" src="/js/materialize.min.js"></script>
+</head>
+
+<script>
+function makeProgress(id)
+{
+	stats = ["To be Approved","To be Dispatched","To be Delivered","Delivered"];
+	buttons = ["Approve","Dispatch","Confirm","Completed"];
+	status = parseInt(document.getElementById("getstatus"+id).innerHTML)+1;
+	if(status>4)
+		return;
+	//do ajax request
+	$.ajax({
+		method : "POST",
+		url: "/progress/"+id,
+		data : "status="+(status),
+  		context: document.body
+			}).done(function(res)
+			{
+				// alert(parseInt(status)+1);
+				document.getElementById("getstatus"+id).innerHTML = parseInt(status);
+				document.getElementById("orderstatus"+id).innerHTML = stats[status-1];
+				document.getElementById("orderbutton"+id).innerHTML = buttons[status-1];
+			});
+}
+</script>
+
+<body style="background:#c1bdba">
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo">SHOP IT!</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="/orders/">Orders</a></li>
+				<li><a href="/inventory/">Inventory</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="card hoverable" >
+			<div class = "row center-align">
+				<h2> Item Delivery Status </h2>
+			</div>
+			<table class="centered bordered highlight hoverable">
+				<thead>
+					<tr >
+						<th>Order name</th>
+						<th>Order status</th> 
+						<th>Take Action</th> 
+					</tr>
+				</thead>
+				
+				<tbody>
+					<% for(var i=0; i<orders.length; i=i+1) {%> 
+
+					<tr>
+						<div id = "getstatus<%= orders[i].id%>" style=" display:none "><%= orders[i].status %></div>
+
+						<td><%= orders[i].name %></td>
+
+						<td id="orderstatus<%= orders[i].id %>" >
+							<%if ( orders[i].status == 1) { %>
+								To be Approved
+							<% } %>
+
+							<%if ( orders[i].status == 2) { %>
+								To be Dispatched
+							<% } %>
+
+							<%if ( orders[i].status == 3) { %>
+								To be Delivered
+							<% } %>
+
+							<%if ( orders[i].status == 4) { %>
+								Delivered
+							<% } %>
+						</td>
+
+						<td >
+							<button id="orderbutton<%= orders[i].id %>" 
+									onclick="makeProgress(<%= orders[i].id %>)"
+									class="btn waves-effect waves-light z-depth-3"  > 
+								
+								<%if ( orders[i].status == 1) { %>
+									Approve
+								<% } %>
+
+								<%if ( orders[i].status == 2) { %>
+									Dispatch
+								<% } %>
+
+								<%if ( orders[i].status == 3) { %>
+									Confirm
+								<% } %>
+
+								<%if ( orders[i].status == 4) { %>
+									Completed
+								<% } %>
+
+
+							</button>
+						</td>
+					</tr>
+
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>

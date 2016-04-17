@@ -1,0 +1,97 @@
+<html>
+<head>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/materialize.min.css" />
+    <script type="text/javascript" src="/js/jquery-2.2.3.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<script>
+    $(function() {
+        $("#myform").on("submit", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: $(this).attr("action"),
+                type: 'POST',
+                data: $(this).serialize(),
+                beforeSend: function() {
+                    $("#message").html("sending...");
+                },
+                success: function(data) {
+                    $("#message").hide();
+                    $("#response").html(data);
+                    if(data!="Enter Valid Entries"){
+                       document.getElementById("myform").reset();
+                    }
+                }
+            });
+        });
+    });
+
+    function orderView(){
+        window.location.href='/orders/';
+    }
+</script>
+<body style="background:#c1bdba">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">SHOP IT!</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/orders/">Orders</a></li>
+                <li><a href="/inventory/">Inventory</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card hoverable" id ="card_item" style="padding:30px">
+            <div class = "row center-align ">
+                <h2> Add A New Item to Inventory </h2>
+            </div>
+            <div id="message"></div>
+            <form class="col s12 " id="myform" action="/add_item/">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="name" type="text" name="name" class="validate">
+                        <label for="first_name">Item Name</label>
+                    </div>
+                     <div class="input-field col s6">
+                        <input id="photo" type="text" name="photo" class="validate">
+                        <label for="photo">Item Photo URL</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="description" type="text" name="description" class="validate">
+                        <label for="description">Description</label>
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="price" type="number" name="price" class="validate">
+                        <label for="price">Price</label>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="col s6 center-align">
+                        <button class="btn waves-effect waves-light z-depth-3" type="submit">
+                            Submit
+                             <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                    <div class="col s6 flow-text center-align" >
+                        <div id="response" class="chip">
+                        </div>   
+                    </div>
+                </div>
+                <!-- <div class = "row center-align">
+                    <div class="col s6 center-align">
+                        <button class="btn waves-effect waves-light z-depth-3" onclick="orderView()">GO TO MY ORDERS</button>
+                    </div>
+                </div> -->
+            </form>
+        </div>
+    </div>
+</body>
