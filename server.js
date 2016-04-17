@@ -5,7 +5,6 @@ app = express();
 expressLayouts = require('express-ejs-layouts');
 http = require('http').Server(app);
 session = require('express-session');
-flash = require('connect-flash');
 
 //Different Modules
 authenticate = require('./lib/authenticate.js');
@@ -17,7 +16,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(expressLayouts);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(flash());
 
 app.set('layout');
 app.set('view engine', 'ejs');
@@ -38,8 +36,13 @@ app.get('/', function(req, res)
 {
 	var shopit_instance = new shopit();
 	var ses = req.session;
-	if(ses.valid == 1)
-		return res.redirect('/catalogue/');
+	if(ses.logged == 1)
+	{
+		if(ses.user_type == 1)
+			return res.redirect('/catalogue/');
+		else
+			return res.redirect('/inventory/');
+	}
 	else
 		return shopit_instance.viewMain(req,res);		
 });
