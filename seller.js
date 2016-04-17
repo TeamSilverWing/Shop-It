@@ -17,9 +17,19 @@ module.exports = function(app,connection){
 		var description = req.body.description;
 		console.log(name);
 		console.log(description);
+		if(name == "" || photo == "" || description == ""){
+			res.send("Enter Valid Entries");
+			return;
+		}
 		connection.query('INSERT INTO Item (description,name,photo,seller) values ("'+description+'","'+name+'","'+photo+'",'+seller+')', 
 			function(err, rows, field){
-				res.send(err);
+				if(err==null)
+				{
+					res.send("Item added Successfully");
+				}
+				else{
+					res.send("Error");
+				}
 		});
 	});
 
