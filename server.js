@@ -86,8 +86,6 @@ app.post('/cart/delete/',function (req, res)	//Delete from Cart
 	var buyer_instance = new buyer();
 	return buyer_instance.deleteFromCart(req,res);
 });
-
-
 //Using ShopIt Module
 app.get('/catalogue/', function (req, res)
 {
@@ -120,3 +118,6 @@ app.post('/checkout/confirm/',function(req,res)
 	var checkout_instance = new checkout();
 	return checkout_instance.checkOutConfirm(req,res);
 });
+
+//Seller Functoins handled addToCart
+require('./lib/seller')(app,connection);
