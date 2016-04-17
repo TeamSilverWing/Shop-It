@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html >
-  <head>
-	<meta charset="UTF-8">
-	<title>Sign-Up/Login Form</title>
-	
-	<!-- <link rel="stylesheet" href="/css/normalize.css"> -->
-	<!-- <link rel="stylesheet" href="/css/style-login.css"> -->
+<head>
 	<link rel="stylesheet" href="/css/materialize.min.css" />
 	<script type="text/javascript" src="/js/jquery-2.2.3.js"></script>
 	<script type="text/javascript" src="/js/materialize.min.js"></script>
@@ -14,7 +7,8 @@
   <body>
   	<nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo">SHOP IT!</a>
+	        <img src = "/images/logo.png" style="margin-top: 6px;">
+            <a href="/" class="brand-logo">SHOP IT!</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/">Home</a></li>
             </ul>
@@ -24,9 +18,14 @@
      <div class="container">
         <div class="card hoverable" id ="card_item" style="padding:50px">
         	<div class="row center-align">
+	            <div class="row">
+	            <%if (error!="") {%>
+	            <%= error %>
+	            <% } %>
+	            </div>
 	            <form class="col s6" id="myform1" action="/signup/" method="post">
 		            <div class = "row ">
-		                <h2> Signup </h2>
+		                <h2> Sign Up </h2>
 		            </div>
 	                <div class="row">
 	                    <div class="input-field col s6">
@@ -45,8 +44,7 @@
 						      <option value="1">Buyer</option>
 						      <option value="2">Seller</option>
 						    </select>
-						    <!-- <label>Materialize Select</label> -->
-	                	</div>
+						</div>
 	                </div>
 	                <div class="row">
 	                    <div class="input-field col s12">
@@ -71,15 +69,11 @@
 	                    <div class="col s6 center-align">
 	                        <button class="btn waves-effect waves-light z-depth-3" type="submit">
 	                            Signup
-	                             <!-- <i class="material-icons right">signup</i> -->
 	                        </button>
-	                    </div>
-	                    <div class="col s6 flow-text center-align" >
-	                        <div id="response" class="chip">Modify for response
-	                        </div>   
 	                    </div>
 	                </div>
 	            </form>
+
 	            <form class="col s6" id="myform2" action="/login_auth/" method="post">
 		            <div class = "row ">
 		                <h2> Login </h2>
@@ -100,19 +94,11 @@
 	                    <div class="col s6 center-align">
 	                        <button class="btn waves-effect waves-light z-depth-3" type="submit">
 	                            Login
-	                             <!-- <i class="material-icons right">signup</i> -->
 	                        </button>
-	                    </div>
-	                    <div class="col s6 flow-text center-align" >
-	                        <div id="response" class="chip">Modify for response
-	                        </div>   
 	                    </div>
 	                </div>
 	            </form>
         	</div>
         </div>
     </div>
-
-
-  </body>
-</html>
+</body>
