@@ -7,8 +7,6 @@
 <script>
 function addToCart(item)
 {
-	document.getElementById(item+"-status").innerHTML = "Adding..";
-	
 	$.ajax({
 		method : "POST",
 		url: "/cart/add/",
@@ -16,7 +14,6 @@ function addToCart(item)
 		}).done(function(data)
 		{
 			alert(data);
-			document.getElementById(item+"-status").style.visibility = "hidden";
 			document.getElementById(item+"-add-cart-button").style.visibility = "hidden";
 			document.getElementById(item+"-delete-cart-button").style.visibility = "visible";
 		});
@@ -24,8 +21,6 @@ function addToCart(item)
 
 function deleteFromCart(item)
 {
-	document.getElementById(item+"-status").innerHTML = "Deleting..";
-	
 	$.ajax({
 		method : "POST",
 		url: "/cart/delete/",
@@ -33,7 +28,6 @@ function deleteFromCart(item)
 		}).done(function(data)
 		{
 			alert(data);
-			document.getElementById(item+"-status").style.visibility = "hidden";
 			document.getElementById(item+"-delete-cart-button").style.visibility = "hidden";
 			document.getElementById(item+"-add-cart-button").style.visibility = "visible";			
 		});
@@ -72,7 +66,6 @@ function deleteFromCart(item)
 							<p>Price : <%= items[i].price %></p>
 							<p id ="<%= items[i].id %>-seller" style="visibility:hidden;display:inline;"><%= items[i].seller %></p>
 							</b>
-							<p id="<%= items[i].id %>-status"></p>
 							<%if (items[i].visibility == 1) { %>
 								<button id = "<%= items[i].id %>-add-cart-button" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
 								<button id = "<%= items[i].id %>-delete-cart-button" style = "visibility:hidden;display:inline;" onclick = "deleteFromCart(<%= items[i].id %>)">Delete From Cart</button>
@@ -91,7 +84,6 @@ function deleteFromCart(item)
 							<p>Price : <%= items[i+1].price %></p>
 							<p id ="<%= items[i+1].id %>-seller" style="visibility:hidden;display:inline;"><%= items[i+1].seller %></p>
 							</b>
-							<p id="<%= items[i+1].id %>-status"></p>
 							<%if (items[i+1].visibility == 1) { %>
 								<button id = "<%= items[i+1].id %>-add-cart-button" onclick = "addToCart(<%= items[i+1].id %>)">Add To Cart</button>
 								<button id = "<%= items[i+1].id %>-delete-cart-button" style = "visibility:hidden;display:inline;" onclick = "deleteFromCart(<%= items[i+1].id %>)">Delete From Cart</button>
@@ -111,7 +103,6 @@ function deleteFromCart(item)
 							<p>Price : <%= items[i+2].price %></p>
 							<p id ="<%= items[i+2].id %>-seller" style="visibility:hidden;display:inline;"><%= items[i+2].seller %></p>
 							</b>
-							<p id="<%= items[i+2].id %>-status"></p>
 							<%if (items[i+2].visibility == 1) { %>
 								<button id = "<%= items[i+2].id %>-add-cart-button" onclick = "addToCart(<%= items[i+2].id %>)">Add To Cart</button>
 								<button id = "<%= items[i+2].id %>-delete-cart-button" style = "visibility:hidden;display:inline;" onclick = "deleteFromCart(<%= items[i+2].id %>)">Delete From Cart</button>

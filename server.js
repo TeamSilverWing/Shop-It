@@ -5,18 +5,20 @@ app = express();
 expressLayouts = require('express-ejs-layouts');
 http = require('http').Server(app);
 session = require('express-session');
+flash = require('connect-flash');
 
 //Different Modules
 authenticate = require('./lib/authenticate.js');
 buyer = require('./lib/buyer.js');
 shopit = require('./lib/shopit.js');
 checkout = require('./lib/checkout.js');
-
 app.use(session({secret: '5H0P17!'}));
 app.use(express.static(__dirname + '/public'));
 app.use(expressLayouts);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(flash());
+
 app.set('layout');
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');

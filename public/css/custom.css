@@ -1,0 +1,52 @@
+﻿body {
+    font-family: 'Signika', sans-serif;
+    font-size: 16px;
+    line-height: 35px;
+    background-color: #ECECEC;
+}
+
+.row-pad {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.clr-white {
+    color: #555555;
+}
+
+h1 {
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
+
+h4 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.icon-round {
+    font-size: 30px;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    color: #fff;
+    border: 2px solid #fff;
+    text-align: center;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    cursor: pointer;
+    margin: 5px;
+   
+}
+
+.main-img {
+    max-height: 550px;
+    margin-top: 50px;
+}
+
+.btn-dwwn {
+    max-height: 50px;
+    border: 2px solid #fff;
+    margin: 5px;
+}
