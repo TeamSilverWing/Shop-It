@@ -1,16 +1,28 @@
 <link rel="stylesheet" href="/css/skel.css" />
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/materialize.min.css" />
-
+<script src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" href="/css/sweetalert.css">
 <script>
+
 function calculatePrice()
 {
     var sizeofCart = parseInt(document.getElementById("size-cart").innerHTML);
-    alert(sizeofCart); 
-    for(i=0;i<sizeofCart;i++)
+    swal(sizeofCart); 
+    var total = document.getElementsByName("left");
+    var total2 = document.getElementsByName("right");
+    var price = 0;
+    var quan = 0;
+    for(i=0;i<total.length;i++)
     {
-           
+        if(total2[i].style.display == "none")
+        {
+            quan++;
+            price+=parseInt(total[i].innerHTML.substr(4))
+        }
     }
+    document.getElementById("price").innerHTML = "Rs. "+price;
+    document.getElementById("quantity").innerHTML = quan;
 }
 
 function addToCart(item)
@@ -21,9 +33,10 @@ function addToCart(item)
         data : "itemId="+item,
         }).done(function(data)
         {
-            alert(data);
+            swal(data);
             document.getElementById(item+"-add-cart-button").style.display = "none";
             document.getElementById(item+"-delete-cart-button").style.display = "inline";
+            calculatePrice();
         });
 }
 
@@ -35,13 +48,17 @@ function deleteFromCart(item)
         data : "itemId="+item,
         }).done(function(data)
         {
-            alert(data);
+            swal(data);
             document.getElementById(item+"-delete-cart-button").style.display = "none";
             document.getElementById(item+"-add-cart-button").style.display = "inline";          
+            calculatePrice();
         });
 }
-
+$( document ).ready(function() {
+    calculatePrice();
+});
 </script>
+
 
 <nav>
     <div class="nav-wrapper">
@@ -76,10 +93,10 @@ function deleteFromCart(item)
         <label id = "size-cart" style="display:none;"><%= items.length %></label>
         <% for(var i=0; i<items.length; i=i+1) {%>
             <tr>
-            <td id =><%= items[i].name %></td>
-            <td>Rs. <%= items[i].price %></td>
+            <td><%= items[i].name %></td>
+            <td name ="left">Rs. <%= items[i].price %></td>
             <td>
-                <button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-add-cart-button" style = "display:none;" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
+                <button name = "right" class = "waves-effect waves-light btn" id = "<%= items[i].id %>-add-cart-button" style = "display:none;" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
                 <button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-delete-cart-button" onclick = "deleteFromCart(<%= items[i].id %>)">Delete From Cart</button>
             </td>
             </tr>

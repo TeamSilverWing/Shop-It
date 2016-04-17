@@ -3,35 +3,37 @@
 <link rel="stylesheet" href="/css/skel.css" />
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/materialize.min.css" />
+<script src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" href="/css/sweetalert.css">
 </head>
 
 <script>
 function addToCart(item)
 {
-	$.ajax({
-		method : "POST",
-		url: "/cart/add/",
-		data : "itemId="+item,
-		}).done(function(data)
-		{
-			alert(data);
-			document.getElementById(item+"-add-cart-button").style.display = "none";
-			document.getElementById(item+"-delete-cart-button").style.display = "inline";
-		});
+    $.ajax({
+        method : "POST",
+        url: "/cart/add/",
+        data : "itemId="+item,
+        }).done(function(data)
+        {
+            swal(data);
+            document.getElementById(item+"-add-cart-button").style.display = "none";
+            document.getElementById(item+"-delete-cart-button").style.display = "inline";
+        });
 }
 
 function deleteFromCart(item)
 {
-	$.ajax({
-		method : "POST",
-		url: "/cart/delete/",
-		data : "itemId="+item,
-		}).done(function(data)
-		{
-			alert(data);
-			document.getElementById(item+"-delete-cart-button").style.display = "none";
-			document.getElementById(item+"-add-cart-button").style.display = "inline";			
-		});
+    $.ajax({
+        method : "POST",
+        url: "/cart/delete/",
+        data : "itemId="+item,
+        }).done(function(data)
+        {
+            swal(data);
+            document.getElementById(item+"-delete-cart-button").style.display = "none";
+            document.getElementById(item+"-add-cart-button").style.display = "inline";          
+        });
 }
 
 </script>
@@ -39,12 +41,12 @@ function deleteFromCart(item)
 <!-- Header -->
 <nav>
     <div class="nav-wrapper">
-        	
-     	   <img src = "/images/logo.png" style="margin-top: 6px;">
-        	<a href="#" class="brand-logo">SHOP IT!</a>
+            
+           <img src = "/images/logo.png" style="margin-top: 6px;">
+            <a href="#" class="brand-logo">SHOP IT!</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/">Home</a></li>
-			<%if (user.valid) { %>
+            <%if (user.valid) { %>
             <li><a href="/logout/">Logout</a></li>
             <li><a href="/cart/">My Cart</a></li>
             <li><a href="/checkout/">Checkout</a></li>
@@ -123,8 +125,3 @@ function deleteFromCart(item)
 						</div>
 				
 <% } %>
-
-	<!-- Footer -->
-			<div id="footer" style="background-color: #323232;width:100%;height:100%;">
-				Footer
-			</div>

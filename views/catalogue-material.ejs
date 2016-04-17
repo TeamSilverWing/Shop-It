@@ -1,0 +1,152 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/css/materialize.min.css" />
+    <script type="text/javascript" src="/js/jquery-2.2.3.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+</head>
+
+<script>
+function addToCart(item)
+{
+    $.ajax({
+        method : "POST",
+        url: "/cart/add/",
+        data : "itemId="+item,
+        }).done(function(data)
+        {
+            alert(data);
+            document.getElementById(item+"-add-cart-button").style.display = "none";
+            document.getElementById(item+"-delete-cart-button").style.display = "inline";
+        });
+}
+
+function deleteFromCart(item)
+{
+    $.ajax({
+        method : "POST",
+        url: "/cart/delete/",
+        data : "itemId="+item,
+        }).done(function(data)
+        {
+            alert(data);
+            document.getElementById(item+"-delete-cart-button").style.display = "none";
+            document.getElementById(item+"-add-cart-button").style.display = "inline";          
+        });
+}
+
+</script>
+
+<!-- Header -->
+<nav>
+    <div class="nav-wrapper">
+            
+           <img src = "/images/logo.png" style="margin-top: 6px;">
+            <a href="#" class="brand-logo">SHOP IT!</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/">Home</a></li>
+            <%if (user.valid) { %>
+            <li><a href="/logout/">Logout</a></li>
+            <li><a href="/cart/">My Cart</a></li>
+            <li><a href="/checkout/">Checkout</a></li>
+            <% } %>
+            <%if (!user.valid) { %>
+            <li><a href="/login/">Login</a></li>
+            <% } %>
+        </ul>
+    </div>
+</nav>
+
+<!-- End of header -->
+
+<div class="container ">
+     <div class = "row center-align ">
+               <%if (user.valid == 1) { %>
+                <h4 style="padding-top: 10px;">Welcome, <%= user.first_name %></h4>
+                <% } %>
+                <h2 style="padding-top: 10px;">Our Catalogue</h2>
+                <span class="byline">Browse through the products</span>
+                <br/>
+        </div>
+    <% for(var i=0; i<items.length; i=i+3) {%> 
+
+          <div class="row">
+
+                <div class="col s12 m4 ">
+                    <div class="card large grey darken-3 z-depth-4 center-align margin hoverable valign-wrapper ">
+                        <div  class="valign center-block">
+                            <div class="row">
+                                <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i].photo %>" ></img>
+                                <div class="card-content white-text col s10 offset-s1">
+                                    <span class="card-title"><%= items[i].name%></span>
+                                    <p class = "light">Description : <%= items[i].description %></p>
+                                    <p class = "light">Price : <%= items[i].price %></p>
+                                    <%if (items[i].visibility == 1) { %>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-add-cart-button" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-delete-cart-button" style = "display:none;" onclick = "deleteFromCart(<%= items[i].id %>)">Delete From Cart</button>
+                                    <% } %>
+                                    <%if (items[i].visibility == 0) { %>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-add-cart-button" style = "display:none;" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-delete-cart-button" onclick = "deleteFromCart(<%= items[i].id %>)">Delete From Cart</button>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            <%if (items.length > i+1) { %>
+                <div class="col s12 m4 ">
+                    <div class="card large grey darken-3 z-depth-4 center-align margin hoverable valign-wrapper ">
+                        <div  class="valign center-block">
+                            <div class="row">
+                                <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i+1].photo %>" ></img>
+                                <div class="card-content white-text col s10 offset-s1">
+                                    <span class="card-title"><%= items[i+1].name%></span>
+                                    <p class = "light">Description : <%= items[i+1].description %></p>
+                                    <p class = "light">Price : <%= items[i+1].price %></p>
+                                    <%if (items[i+1].visibility == 1) { %>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i+1].id %>-add-cart-button" onclick = "addToCart(<%= items[i+1].id %>)">Add To Cart</button>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i+1].id %>-delete-cart-button" style = "display:none;" onclick = "deleteFromCart(<%= items[i+1].id %>)">Delete From Cart</button>
+                                    <% } %>
+                                    <%if (items[i+1].visibility == 0) { %>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i+1].id %>-add-cart-button" style = "display:none;" onclick = "addToCart(<%= items[i+1].id %>)">Add To Cart</button>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i+1].id %>-delete-cart-button" onclick = "deleteFromCart(<%= items[i+1].id %>)">Delete From Cart</button>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+
+            <%if (items.length > i+2) { %>
+                <div class="col s12 m4 ">
+                    <div class="card large grey darken-3 z-depth-4 center-align margin hoverable valign-wrapper ">
+                        <div  class="valign center-block">
+                            <div class="row">
+                                <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i+2].photo %>" ></img>
+                                <div class="card-content white-text col s10 offset-s1">
+                                    <span class="card-title"><%= items[i+2].name%></span>
+                                    <p class = "light">Description : <%= items[i+2].description %></p>
+                                    <p class = "light">Price : <%= items[i+2].price %></p>
+                                    <%if (items[i+2].visibility == 1) { %>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i+2].id %>-add-cart-button" onclick = "addToCart(<%= items[i+2].id %>)">Add To Cart</button>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i+2].id %>-delete-cart-button" style = "display:none;" onclick = "deleteFromCart(<%= items[i+2].id %>)">Delete From Cart</button>
+                                    <% } %>
+                                    <%if (items[i+2].visibility == 0) { %>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i+2].id %>-add-cart-button" style = "display:none;" onclick = "addToCart(<%= items[i+2].id %>)">Add To Cart</button>
+                                        <button class = "waves-effect waves-light btn" id = "<%= items[i+2].id %>-delete-cart-button" onclick = "deleteFromCart(<%= items[i+2].id %>)">Delete From Cart</button>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+
+
+
+          </div>
+    <% } %>
+  </div>

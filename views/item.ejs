@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/materialize.min.css" />
-
+<script src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" href="/css/sweetalert.css">
 <script>
 function addToCart(item)
 {
@@ -10,7 +11,7 @@ function addToCart(item)
 		data : "itemId="+item,
 		}).done(function(data)
 		{
-			alert(data);
+			swal(data);
 			document.getElementById(item+"-add-cart-button").style.display = "none";
 			document.getElementById(item+"-delete-cart-button").style.display = "inline";
 		});
@@ -24,7 +25,7 @@ function deleteFromCart(item)
 		data : "itemId="+item,
 		}).done(function(data)
 		{
-			alert(data);
+			swal(data);
 			document.getElementById(item+"-delete-cart-button").style.display = "none";
 			document.getElementById(item+"-add-cart-button").style.display = "inline";			
 		});
