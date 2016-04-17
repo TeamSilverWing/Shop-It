@@ -103,14 +103,16 @@
           <div class="row">
 
                 <div class="col s12 m4 ">
-                    <div class="card medium blue-grey center-align margin hoverable">
-                        <div class="card-image">
-                               <img id="image" class="responsive-img" src="<%= items[i].photo %>" ></img>
-                        </div>
-                        <div class="card-content white-text">
-                            <span class="card-title"><%= items[i].name%></span>
-                            <p class = "light">Description : <%= items[i].description %></p>
-                            <p class = "light">Price : <%= items[i].price %></p>
+                    <div class="card medium blue-grey center-align margin hoverable valign-wrapper ">
+                        <div  class="valign center-block">
+                            <div class="row">
+                                <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i].photo %>" ></img>
+                                <div class="card-content white-text col s10 offset-s1">
+                                    <span class="card-title"><%= items[i].name%></span>
+                                    <p class = "light">Description : <%= items[i].description %></p>
+                                    <p class = "light">Price : <%= items[i].price %></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,14 +120,16 @@
 
             <%if (items.length > i+1) { %>
                 <div class="col s12 m4 ">
-                    <div class="card medium blue-grey center-align margin hoverable">
-                        <div class="card-image">
-                               <img id="image" class="responsive-img" src="<%= items[i+1].photo %>" ></img>
-                        </div>
-                        <div class="card-content white-text">
-                            <span class="card-title"><%= items[i+1].name%></span>
-                            <p class = "light">Description : <%= items[i+1].description %></p>
-                            <p class = "light">Price : <%= items[i+1].price %></p>
+                    <div class="card medium blue-grey center-align margin hoverable valign-wrapper ">
+                        <div  class="valign center-block">
+                            <div class="row">
+                                <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i+1].photo %>" ></img>
+                                <div class="card-content white-text col s10 offset-s1">
+                                    <span class="card-title"><%= items[i+1].name%></span>
+                                    <p class = "light">Description : <%= items[i+1].description %></p>
+                                    <p class = "light">Price : <%= items[i+1].price %></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,14 +137,16 @@
 
             <%if (items.length > i+2) { %>
                 <div class="col s12 m4 ">
-                    <div class="card medium blue-grey center-align margin hoverable">
-                        <div class="card-image">
-                               <img id="image" class="responsive-img" src="<%= items[i+2].photo %>" ></img>
-                        </div>
-                        <div class="card-content white-text">
-                            <span class="card-title"><%= items[i+2].name%></span>
-                            <p class = "light">Description : <%= items[i+2].description %></p>
-                            <p class = "light">Price : <%= items[i+2].price %></p>
+                    <div class="card medium blue-grey center-align margin hoverable valign-wrapper ">
+                        <div  class="valign center-block">
+                            <div class="row">
+                                <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i+2].photo %>" ></img>
+                                <div class="card-content white-text col s10 offset-s1">
+                                    <span class="card-title"><%= items[i+2].name%></span>
+                                    <p class = "light">Description : <%= items[i+2].description %></p>
+                                    <p class = "light">Price : <%= items[i+2].price %></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
