@@ -1,17 +1,9 @@
-<% for(var i=0; i<item.length; i++) {%>
-   <a href = "/items/<%= item[i].id %> "><%= item[i].name %> <%= item[i].rating %></a><br>
-   Name : <%= item[i].name %><br>
-   Description : <%= item[i].description %><br>
-   author : <%= item[i].author %><br>
-<% } %>
-
-<link href="/css/bootstrap.css" rel="stylesheet" />
-<link href="/css/custom.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/materialize.min.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/materialize.min.css" />
 
 <script>
 function addToCart(item)
-{	
+{
 	$.ajax({
 		method : "POST",
 		url: "/cart/add/",
@@ -19,13 +11,13 @@ function addToCart(item)
 		}).done(function(data)
 		{
 			alert(data);
-			document.getElementById(item+"-add-cart-button").style.visibility = "hidden";
-			document.getElementById(item+"-delete-cart-button").style.visibility = "visible";
+			document.getElementById(item+"-add-cart-button").style.display = "none";
+			document.getElementById(item+"-delete-cart-button").style.display = "inline";
 		});
 }
 
 function deleteFromCart(item)
-{	
+{
 	$.ajax({
 		method : "POST",
 		url: "/cart/delete/",
@@ -33,41 +25,58 @@ function deleteFromCart(item)
 		}).done(function(data)
 		{
 			alert(data);
-			document.getElementById(item+"-delete-cart-button").style.visibility = "hidden";
-			document.getElementById(item+"-add-cart-button").style.visibility = "visible";			
+			document.getElementById(item+"-delete-cart-button").style.display = "none";
+			document.getElementById(item+"-add-cart-button").style.display = "inline";			
 		});
 }
 </script>
 
 <body>    
-<nav>
+
+	<nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo">SHOP IT!</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/">Home</a></li>
-                <li><a href="/login/">Login</a></li>
-            </ul>
+        	
+        	<img src = "/images/logo.png" style="margin-top: 6px;">
+        	<a href="#" class="brand-logo">SHOP IT!</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+	            <li><a href="/">Home</a></li>
+	            
+	            <%if (user.valid) { %>
+	            <li><a href="/logout/">Logout</a></li>
+	            <li><a href="/cart/">My Cart</a></li>
+	            <li><a href="/checkout/">Checkout</a></li>
+	            <% } %>
+	            
+	            <%if (!user.valid) { %>
+	            <li><a href="/login/">Login</a></li>
+	            <% } %>
+	        </ul>
         </div>
     </nav>
 
     <div id="home-sec" class="container">
-        <div class="row row-pad clr-white">
-            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                <img src="<%= item.photo %>" class="img-responsive main-img"/>
+        <div class="row row-pad clr-white" style="margin-top:50px;">
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" style="width: 45%;height: 45%;float: left;">
+                <img src="<%= item.photo %>" style = "width:100%;height:100%;"class="img-responsive main-img"/>
             </div>
-            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-                <h1><strong><%= item.name %></strong></h1>
-                <h4><%= item.description %></h4>
-                <h4><strong>Rs. <%= item.price %></strong></h4>
-                
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" style="width: 45%;height: 45%;float: right;margin-left: 5%;">
+            	<h4><strong>Rs. <%= item.price %></strong></h4>
+                <br/>
 				<%if (item.visibility == 1) { %>
-					<button class = "btn btn-primary" id = "<%= item.id %>-add-cart-button" onclick = "addToCart(<%= item.id %>)">Add To Cart</button>
-					<button class = "btn btn-primary" id = "<%= item.id %>-delete-cart-button" style = "visibility:hidden;display:inline;" onclick = "deleteFromCart(<%= item.id %>)">Delete From Cart</button>
+					<button class = "waves-effect waves-light btn btn-primary" id = "<%= item.id %>-add-cart-button" onclick = "addToCart(<%= item.id %>)">Add To Cart</button>
+					<button class = "waves-effect waves-light btn btn-primary" id = "<%= item.id %>-delete-cart-button" style = "display:none;" onclick = "deleteFromCart(<%= item.id %>)">Delete From Cart</button>
 				<% } %>
 				<%if (item.visibility == 0) { %>
-					<button class = "btn btn-primary" id = "<%= item.id %>-add-cart-button" style = "visibility:hidden;display:inline;" onclick = "addToCart(<%= item.id %>)">Add To Cart</button>
-					<button class = "btn btn-primary" id = "<%= item.id %>-delete-cart-button" onclick = "deleteFromCart(<%= item.id %>)">Delete From Cart</button>
-				<% } %>				
+					<button class = "material-icons left waves-effect waves-light btn" id = "<%= item.id %>-add-cart-button" style = "display:none;" onclick = "addToCart(<%= item.id %>)">Add To Cart</button>
+					<button class = "waves-effect waves-light btn" id = "<%= item.id %>-delete-cart-button" onclick = "deleteFromCart(<%= item.id %>)">Delete From Cart</button>
+				<% } %>
+				<br>
+				<br/>
+				<button class = "material-icons left waves-effect waves-light btn" onclick = "window.location.href = '/catalogue'">Back To Catalogue</button>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" style="display: block;width: 100%;float: right;">
+                <h1><strong><%= item.name %></strong></h1>
+                <h4><%= item.description %></h4>				
             </div>
         </div>
     </div>

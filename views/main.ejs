@@ -4,48 +4,12 @@
 <link rel="stylesheet" href="/css/style.css" />
 </head>
 
-<script>
-function addToCart(item)
-{
-	document.getElementById(item+"-status").innerHTML = "Adding..";
-	
-	$.ajax({
-		method : "POST",
-		url: "/cart/add/",
-		data : "itemId="+item,
-		}).done(function(data)
-		{
-			alert(data);
-			document.getElementById(item+"-status").style.visibility = "hidden";
-			document.getElementById(item+"-add-cart-button").style.visibility = "hidden";
-			document.getElementById(item+"-delete-cart-button").style.visibility = "visible";
-		});
-}
-
-function deleteFromCart(item)
-{
-	document.getElementById(item+"-status").innerHTML = "Deleting..";
-	
-	$.ajax({
-		method : "POST",
-		url: "/cart/delete/",
-		data : "itemId="+item,
-		}).done(function(data)
-		{
-			alert(data);
-			document.getElementById(item+"-status").style.visibility = "hidden";
-			document.getElementById(item+"-delete-cart-button").style.visibility = "hidden";
-			document.getElementById(item+"-add-cart-button").style.visibility = "visible";			
-		});
-}
-
-</script>
-
 <!-- Header -->
 			<div id="header">
 				<div class="container">
 						
 					<!-- Logo -->
+						<img src = "/images/logo.png">
 						<h1><a href="#" id="logo">SHOP IT</a></h1>
 					
 					<!-- Nav -->
@@ -62,8 +26,8 @@ function deleteFromCart(item)
 							<div class="container">
 								<section>
 									<header class="major">
-										<h2>Welcome to Shop-it</h2>
-										<span class="byline">&hellip; an e-commerce website to fulfill all your needs</span>
+										<h2>Welcome to Shop-It</h2>
+										<span class="byline">An e-commerce website to fulfill all your needs</span>
 									</header>
 									<a href="/login/" class="button alt">Sign Up/Login</a>
 									<a href="/catalogue/" class="button alt">Browse Products</a>
@@ -87,7 +51,7 @@ function deleteFromCart(item)
 								<section>
 									<header class="major">
 										<h2>SHOP IT</h2>
-										<span class="byline">an ecommerce website</span>
+										<span class="byline">An e-commerce website</span>
 									</header>
 									<div class="row">
 										<section class="6u">
@@ -110,21 +74,20 @@ function deleteFromCart(item)
 							<div class="4u">
 								<section>
 									<header class="major">
-										<h2>Try it!</h2>
-										<span class="byline">Reach out for us.</span>
+										<h2>Reach out for us!</h2>
 									</header>
 									<ul class="contact">
 										<li>
 											<span class="address">Address</span>
-											<span>1234 Somewhere Road #4285 <br />Roorkee, UK 24667</span>
+											<span>F-74, Govind Bhawan<br/> IIT Roorkee, Uttarakhand-247667</span>
 										</li>
 										<li>
 											<span class="mail">Mail</span>
-											<span><a href="#">someone@untitled.tld</a></span>
+											<span><a href="#">shopit@gmail.com</a></span>
 										</li>
 										<li>
 											<span class="phone">Phone</span>
-											<span>(000) 000-0000</span>
+											<span>(+91) 7895 1823 95</span>
 										</li>
 									</ul>	
 								</section>
