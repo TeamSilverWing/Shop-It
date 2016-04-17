@@ -1,4 +1,7 @@
 <html>
+    <link rel="stylesheet" href="/css/materialize.min.css" />
+    <script type="text/javascript" src="/js/jquery-2.2.3.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
 <head>
 </head>
 
@@ -98,7 +101,7 @@
           <div class="row">
 
                 <div class="col s12 m4 ">
-                    <div class="card medium grey darken-3 center-align margin hoverable valign-wrapper ">
+                    <div class="card medium grey z-depth-4 darken-3 center-align margin hoverable valign-wrapper ">
                         <div  class="valign center-block">
                             <div class="row">
                                 <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i].photo %>" ></img>
@@ -115,7 +118,7 @@
 
             <%if (items.length > i+1) { %>
                 <div class="col s12 m4 ">
-                    <div class="card medium grey darken-3 center-align margin hoverable valign-wrapper ">
+                    <div class="card medium grey z-depth-4 darken-3 center-align margin hoverable valign-wrapper ">
                         <div  class="valign center-block">
                             <div class="row">
                                 <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i+1].photo %>" ></img>
@@ -132,7 +135,7 @@
 
             <%if (items.length > i+2) { %>
                 <div class="col s12 m4 ">
-                    <div class="card medium grey darken-3 center-align margin hoverable valign-wrapper ">
+                    <div class="card medium grey z-depth-4 darken-3 center-align margin hoverable valign-wrapper ">
                         <div  class="valign center-block">
                             <div class="row">
                                 <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i+2].photo %>" ></img>
