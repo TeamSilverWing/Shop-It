@@ -34,19 +34,25 @@ http.listen(app.get('port'),function()
 
 app.get('/', function(req, res)
 {
+	var shopit_instance = new shopit();
 	var ses = req.session;
-	if(ses.logged == 1)
-		res.redirect('/catalogue/');
+	if(ses.valid == 1)
+		return res.redirect('/catalogue/');
 	else
-		res.render('login');
+		return shopit_instance.viewMain(req,res);		
 });
 
-
 //Using Authenticate Module
-app.post('/login/',function(req,res)
+app.get('/login/',function(req,res)
 {
 	var authenticate_instance = new authenticate();
 	return authenticate_instance.login(req,res);
+});
+
+app.post('/login_auth/',function(req,res)
+{
+	var authenticate_instance = new authenticate();
+	return authenticate_instance.loginAuth(req,res);
 });
 
 app.get('/logout/',function(req,res)
@@ -83,7 +89,7 @@ app.post('/cart/delete/',function (req, res)	//Delete from Cart
 
 
 //Using ShopIt Module
-app.get('/catalogue', function (req, res)
+app.get('/catalogue/', function (req, res)
 {
 	var shopit_instance = new shopit();
 	return shopit_instance.viewCatalogue(req,res);

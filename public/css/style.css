@@ -448,7 +448,7 @@
 
 	.wrapper.style2 {
 		background: #ececec;
-		padding: 6em 0;
+		padding: 0 0 0 0;
 		text-align: center;
 	}
 
@@ -457,16 +457,16 @@
 		background: #ececec;
 	}
 
-		.wrapper.style3 span {
-			display: inline-block;
-			padding-top: 0.80em;
-			font-size: 2em;
-			font-weight: 600;
-		}
+	.wrapper.style3 span {
+		display: inline-block;
+		padding-top: 0.80em;
+		font-size: 2em;
+		font-weight: 600;
+	}
 
-		.wrapper.style3 .button {
-			float: right;
-		}
+	.wrapper.style3 .button {
+		float: right;
+	}
 
 /* Header */
 
@@ -552,37 +552,44 @@
 		padding: 1em 0;
 	}
 
-		.dropotron > li {
+		.dropotron > li
+		{
 			line-height: 2em;
 			padding: 0 1em;
 		}
 
-			.dropotron > li > a {
+			.dropotron > li > a
+			{
 				color: #FFF;
 				text-decoration: none;
 			}
 
-			.dropotron > li.active > a, .dropotron > li:hover > a {
+			.dropotron > li.active > a, .dropotron > li:hover > a
+			{
 				color: #FFF;
 			}
 
-		.dropotron.level-0 {
+		.dropotron.level-0
+		{
 			border-radius: 0 10px 10px 10px;
 			font-size: 1em;
 		}
 
 /* Banner */
 
-	#banner {
+	#banner
+	{
 		text-align: center;
 		padding: 4em 0 0 0;
 	}
 
-		#banner .major h2 {
+		#banner .major h2
+		{
 			font-size: 3.5em;
 		}
 
-		#banner .major .byline {
+		#banner .major .byline
+		{
 			display: block;
 			margin: 0em 2em;
 			line-height: 1.6em;
@@ -630,7 +637,7 @@
 /* Footer */
 
 	#footer {
-		padding: 4em 0;
+		padding: 0 0;
 		color: #fff;
 	}
 
@@ -645,7 +652,7 @@
 
 		#footer .copyright {
 			margin-top: 3em;
-			padding-top: 3em;
+			padding-top: 0em;
 			border-top: 1px solid;
 			border-color: rgba(192, 192, 192, 0.15);
 			text-align: center;
