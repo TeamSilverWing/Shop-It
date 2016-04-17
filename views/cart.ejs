@@ -2,6 +2,37 @@
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/materialize.min.css" />
 
+<script>
+function addToCart(item)
+{
+    $.ajax({
+        method : "POST",
+        url: "/cart/add/",
+        data : "itemId="+item,
+        }).done(function(data)
+        {
+            alert(data);
+            document.getElementById(item+"-add-cart-button").style.display = "none";
+            document.getElementById(item+"-delete-cart-button").style.display = "inline";
+        });
+}
+
+function deleteFromCart(item)
+{
+    $.ajax({
+        method : "POST",
+        url: "/cart/delete/",
+        data : "itemId="+item,
+        }).done(function(data)
+        {
+            alert(data);
+            document.getElementById(item+"-delete-cart-button").style.display = "none";
+            document.getElementById(item+"-add-cart-button").style.display = "inline";          
+        });
+}
+
+</script>
+
 <nav>
     <div class="nav-wrapper">
     	
@@ -22,9 +53,41 @@
     </div>
 </nav>
 
-The Items in your Cart are :
-<% for(var i=0; i<items.length; i=i+1) {%>
-ITEM ID : <%= items[i].item %>
-BUYER ID : <%= items[i].buyer %>
-<br/>
-<% } %>
+<div class="container">
+<table class="highlight card">
+        <thead>
+          <tr>
+              <th data-field="name"><b>Item Name</b></th>
+              <th data-field="price"><b>Item Price</b></th>
+              <th data-field="action"><b>Action</b></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% for(var i=0; i<items.length; i=i+1) {%>
+            <tr>
+            <td><%= items[i].name %></td>
+            <td>Rs. <%= items[i].price %></td>
+            <td>
+                <button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-add-cart-button" style = "display:none;" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
+                <button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-delete-cart-button" onclick = "deleteFromCart(<%= items[i].id %>)">Delete From Cart</button>
+            </td>
+            </tr>
+        <% } %>
+        <tr>
+        <td><b>Total Price</b></td>
+        <td id = "price"></td>
+        <td><button class = "waves-effect waves-light btn" onclick = "window.location.href='/catalogue/'">Add More Items</button>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <b>Total Quantity
+        </b></td>
+        <td id="quantity">
+        </td>
+        <td><button class = "waves-effect waves-light btn" onclick = "window.location.href='/checkout/'">Confirm Cart</button>
+        </td>
+        </tr>
+       </tbody>
+</table>
+</div>
