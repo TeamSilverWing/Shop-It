@@ -76,7 +76,7 @@ function deleteFromCart(item)
         <label id = "size-cart" style="display:none;"><%= items.length %></label>
         <% for(var i=0; i<items.length; i=i+1) {%>
             <tr>
-            <td><%= items[i].name %></td>
+            <td id =><%= items[i].name %></td>
             <td>Rs. <%= items[i].price %></td>
             <td>
                 <button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-add-cart-button" style = "display:none;" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
