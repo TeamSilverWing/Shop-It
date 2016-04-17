@@ -78,6 +78,7 @@ function deleteFromCart(item)
                                 <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i].photo %>" ></img>
                                 <div class="card-content white-text col s10 offset-s1">
                                     <span class="card-title"><%= items[i].name%></span>
+                                    <p class = "light">Description : <%= items[i].description %></p>
                                     <p class = "light">Price : <%= items[i].price %></p>
                                     <%if (items[i].visibility == 1) { %>
                                         <button class = "waves-effect waves-light btn" id = "<%= items[i].id %>-add-cart-button" onclick = "addToCart(<%= items[i].id %>)">Add To Cart</button>
@@ -102,6 +103,7 @@ function deleteFromCart(item)
                                 <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i+1].photo %>" ></img>
                                 <div class="card-content white-text col s10 offset-s1">
                                     <span class="card-title"><%= items[i+1].name%></span>
+                                    <p class = "light">Description : <%= items[i+1].description %></p>
                                     <p class = "light">Price : <%= items[i+1].price %></p>
                                     <%if (items[i+1].visibility == 1) { %>
                                         <button class = "waves-effect waves-light btn" id = "<%= items[i+1].id %>-add-cart-button" onclick = "addToCart(<%= items[i+1].id %>)">Add To Cart</button>
@@ -126,6 +128,7 @@ function deleteFromCart(item)
                                 <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i+2].photo %>" ></img>
                                 <div class="card-content white-text col s10 offset-s1">
                                     <span class="card-title"><%= items[i+2].name%></span>
+                                    <p class = "light">Description : <%= items[i+2].description %></p>
                                     <p class = "light">Price : <%= items[i+2].price %></p>
                                     <%if (items[i+2].visibility == 1) { %>
                                         <button class = "waves-effect waves-light btn" id = "<%= items[i+2].id %>-add-cart-button" onclick = "addToCart(<%= items[i+2].id %>)">Add To Cart</button>

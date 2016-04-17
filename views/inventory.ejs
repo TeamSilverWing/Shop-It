@@ -1,10 +1,8 @@
 <html>
-<head>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/materialize.min.css" />
     <script type="text/javascript" src="/js/jquery-2.2.3.js"></script>
     <script type="text/javascript" src="/js/materialize.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<head>
 </head>
 
 <script>
@@ -96,21 +94,23 @@
     
     <div class="container ">
         <div class = "row center-align ">
-                <h2 class="blue-text"> Your Items </h2>
+                <h2 class="orange-text"> Your Items </h2>
             </div>
     <% for(var i=0; i<items.length; i=i+3) {%> 
 
           <div class="row">
 
                 <div class="col s12 m4 ">
-                    <div class="card medium blue-grey center-align margin hoverable">
-                        <div class="card-image">
-                               <img id="image" class="responsive-img" src="<%= items[i].photo %>" ></img>
-                        </div>
-                        <div class="card-content white-text">
-                            <span class="card-title"><%= items[i].name%></span>
-                            <p class = "light">Description : <%= items[i].description %></p>
-                            <p class = "light">Price : <%= items[i].price %></p>
+                    <div class="card medium grey z-depth-4 darken-3 center-align margin hoverable valign-wrapper ">
+                        <div  class="valign center-block">
+                            <div class="row">
+                                <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i].photo %>" ></img>
+                                <div class="card-content white-text col s10 offset-s1">
+                                    <span class="card-title"><%= items[i].name%></span>
+                                    <p class = "light">Description : <%= items[i].description %></p>
+                                    <p class = "light">Price : <%= items[i].price %></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,14 +118,16 @@
 
             <%if (items.length > i+1) { %>
                 <div class="col s12 m4 ">
-                    <div class="card medium blue-grey center-align margin hoverable">
-                        <div class="card-image">
-                               <img id="image" class="responsive-img" src="<%= items[i+1].photo %>" ></img>
-                        </div>
-                        <div class="card-content white-text">
-                            <span class="card-title"><%= items[i+1].name%></span>
-                            <p class = "light">Description : <%= items[i+1].description %></p>
-                            <p class = "light">Price : <%= items[i+1].price %></p>
+                    <div class="card medium grey z-depth-4 darken-3 center-align margin hoverable valign-wrapper ">
+                        <div  class="valign center-block">
+                            <div class="row">
+                                <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i+1].photo %>" ></img>
+                                <div class="card-content white-text col s10 offset-s1">
+                                    <span class="card-title"><%= items[i+1].name%></span>
+                                    <p class = "light">Description : <%= items[i+1].description %></p>
+                                    <p class = "light">Price : <%= items[i+1].price %></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,14 +135,16 @@
 
             <%if (items.length > i+2) { %>
                 <div class="col s12 m4 ">
-                    <div class="card medium blue-grey center-align margin hoverable">
-                        <div class="card-image">
-                               <img id="image" class="responsive-img" src="<%= items[i+2].photo %>" ></img>
-                        </div>
-                        <div class="card-content white-text">
-                            <span class="card-title"><%= items[i+2].name%></span>
-                            <p class = "light">Description : <%= items[i+2].description %></p>
-                            <p class = "light">Price : <%= items[i+2].price %></p>
+                    <div class="card medium grey z-depth-4 darken-3 center-align margin hoverable valign-wrapper ">
+                        <div  class="valign center-block">
+                            <div class="row">
+                                <img id="image" class="responsive-img col s10 offset-s1" src="<%= items[i+2].photo %>" ></img>
+                                <div class="card-content white-text col s10 offset-s1">
+                                    <span class="card-title"><%= items[i+2].name%></span>
+                                    <p class = "light">Description : <%= items[i+2].description %></p>
+                                    <p class = "light">Price : <%= items[i+2].price %></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
