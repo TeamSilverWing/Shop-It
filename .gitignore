@@ -1,3 +1,9 @@
 node_modules
 
-*.sql
+*.sqlpublic/media/earphone.jpeg
+public/media/headphone.jpeg
+public/media/mobile.jpeg
+public/media/moto3g.jpeg
+public/media/sunglass.jpeg
+public/media/tv.jpeg
+public/media/watch.jpeg
