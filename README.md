@@ -1,5 +1,5 @@
 # Shop-It
-
+An e-commerce platform webapp build using Express MVC framework of NodeJS.
 ##Create a mysql user
 
 ###Run these in mysql shell
