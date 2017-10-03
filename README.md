@@ -1,18 +1,18 @@
 # Shop-It
 
-##Create a mysql user
+## Create a mysql user
 
-###Run these in mysql shell
+### Run these in mysql shell
 * create user 'shopit'@'localhost' identified by 'shopit';
 * grant grant all privileges on * . * to 'shopit'@'localhost';
 * flush privileges;
 
-##Creating db
+## Creating db
 * Log in using ``mysql -u shopit -p``
 * `` Password is : shopit``
 * Add following tables
 
-* ####Table Item
+* #### Table Item
 ``CREATE TABLE `Item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) NOT NULL,
@@ -26,7 +26,7 @@
   CONSTRAINT `Item_ibfk_1` FOREIGN KEY (`seller`) REFERENCES `User` (`id`)
 )``
 
-* ####Table User
+* #### Table User
 ``CREATE TABLE `User` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -42,7 +42,7 @@
   UNIQUE KEY `email` (`email`)
 )``
 
-* ####Table CartItem
+* #### Table CartItem
 ``CREATE TABLE `CartItem` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item` int(11) NOT NULL,
@@ -51,7 +51,7 @@
   UNIQUE KEY `unique_item` (`item`,`buyer`)
 )``
 
-* ####Table Order
+* #### Table Order
 ``CREATE TABLE `Order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `buyer` int(11) NOT NULL,
@@ -62,7 +62,7 @@
   CONSTRAINT `Order_ibfk_1` FOREIGN KEY (`buyer`) REFERENCES `User` (`id`)
 )``
 
-* ####Table OrderItem
+* #### Table OrderItem
 ``CREATE TABLE `OrderItem` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item` int(11) NOT NULL,
@@ -81,7 +81,7 @@
   CONSTRAINT `OrderItem_ibfk_4` FOREIGN KEY (`seller`) REFERENCES `User` (`id`)
 )``
 
-###To run the application
+### To run the application
 * ``npm install`` installes the node_modules
 * ``PORT='<Port number>' nodejs server.js``
 * Go to url ``localhost:<Port number>/catalogue``
